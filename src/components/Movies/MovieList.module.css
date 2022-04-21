@@ -11,7 +11,5 @@ h4 {
 }
 
 main {
-    /* position absolute is the opposite of relative */
-    /* position: relative; /* when we want to position an element but do not want to affect the layout around it */ 
-    z-index: 1; /* z-index puts this element on top but only works with position set to absolute/relative */
+    z-index: 1;
 }
