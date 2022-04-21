@@ -1,24 +1,49 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import "./App.css";
+import Home from "./pages/Home";
+import MyList from "./pages/MyList";
+import TVShows from "./pages/TVShows";
+import Movies from "./pages/Movies";
+import Layout from "./components/Layout/Layout";
+import { useDispatch } from "react-redux";
+import { fetchImageConfigData, fetchMovies } from "./components/store/request-actions";
+import { POPULAR_NOW, TOP_RATED_MOVIES, TOP_RATED_TV_SHOWS } from "./components/store/movies";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    /* we need this data to be able to display images */
+    dispatch(fetchImageConfigData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      dispatch(fetchMovies(POPULAR_NOW));
+    }, 500);
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchMovies(TOP_RATED_MOVIES));
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchMovies(TOP_RATED_TV_SHOWS));
+  }, [dispatch]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <Layout>
+        <Routes>
+          <Route path='/' element={<Home />} exact />
+          <Route path='/home' element={<Home />} />
+          <Route path='/tv-shows' element={<TVShows />} />
+          <Route path='/movies' element={<Movies />} />
+          <Route path='/my-list' element={<MyList />} />
+        </Routes>
+      </Layout>
+    </Fragment>
   );
 }
 

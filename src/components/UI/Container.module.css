@@ -1,0 +1,11 @@
+.container {
+    margin-left: 5rem;
+    margin-top: 1rem;
+    display: flex;
+    overflow-x: scroll; /* enables horizontal scrolling */
+    overflow-y: hidden; /* hides the scrollbar */
+}
+
+.container::-webkit-scrollbar {
+    display: none; /* to hide scrollbar but keep functionality */
+  }

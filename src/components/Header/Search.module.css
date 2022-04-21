@@ -1,0 +1,21 @@
+form {
+    display: flex;
+    height: 60px;
+}
+
+.search-box {
+    background-color: #1A0D0D;
+    width: 400px;
+    color: #7B7C7C;
+    margin-top: 1.2rem;
+    margin-left: 10rem;
+    display: inline-flex;
+}
+
+button[type='submit'] {
+    background: transparent url(../../images/search.svg) no-repeat center;
+    border: none;
+    width: 40px;
+    margin-top: 1rem;
+}
+
