@@ -1,0 +1,25 @@
+.icon {
+    width: 30px;
+    height: 25px;
+    margin: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 35px;
+    margin-left: 1rem;
+    margin-top: 0.2rem;
+}
+
+.container {
+    position: relative;
+    right: -20rem;
+    top: 1.5rem;
+    display: flex;
+}
+
+input[type=text], input[type=text]:hover, input[type=text]:focus {
+    background-color: transparent;
+    border: 1px white solid;
+    color: white
+}

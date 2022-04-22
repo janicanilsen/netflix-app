@@ -1,17 +1,13 @@
-import Categories from "./Categories";
+import LeftNavigation from "./LeftNavigation";
 import Logo from "./Logo";
-import Search from "./Search";
 import './MainHeader.module.css';
-import RightSideHeader from "./RightSideHeader";
-
-//does NOT work anywhere below, whyyyy???
+import RightNavigation from "./RightNavigation";
 
 const MainHeader = (props) => {
     return <header>
         <Logo />
-        <Categories />
-        {/* <Search /> */}
-        <RightSideHeader />
+        <LeftNavigation />
+        <RightNavigation />
     </header>
 }
 

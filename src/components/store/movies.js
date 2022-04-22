@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { current } from "@reduxjs/toolkit";
 
 const initialMoviesState = {
   popularMovies: [],
@@ -6,6 +7,10 @@ const initialMoviesState = {
   myMovieList: [],
   topRatedTVShows: [],
   topRatedMovies: [],
+  movieSearch: {
+    searchResults: [],
+    searchText: "",
+  },
 };
 
 const moviesSlice = createSlice({
@@ -36,7 +41,9 @@ const moviesSlice = createSlice({
           );
           break;
         default:
-          console.log("Invalid category @ movies.js : " + action.payload.category);
+          console.log(
+            "Invalid category @ movies.js : " + action.payload.category
+          );
       }
     },
     addToMovieList(state, action) {
@@ -53,6 +60,48 @@ const moviesSlice = createSlice({
     setTopRatedMovies(state, action) {
       state.topRatedMovies = action.payload;
     },
+    resetMovieSearch(state) {
+      state.movieSearch = {
+        searchText: "",
+        searchResults: [],
+      };
+    },
+    setMovieSearch(state, action) {
+      const searchText = action.payload;
+      let results = [];
+
+      /* we need to search from all movie arrays:
+        popularMovies, topRatedMovies, topRatedTVShows */
+      results = state.popularMovies.filter((movie) =>
+        movie.title.toLowerCase().includes(searchText.toLowerCase())
+      );
+      results = results.concat(
+        state.topRatedMovies.filter((movie) =>
+          movie.title.toLowerCase().includes(searchText.toLowerCase())
+        )
+      );
+      results = results.concat(
+        state.topRatedTVShows.filter((movie) =>
+          movie.name.toLowerCase().includes(searchText.toLowerCase())
+        )
+      );
+
+      if ( /* here, we're keeping the old results if there's no matches to satisfy use cases like:
+              searchText: 'mannnn' => should still display 'Batman', 'Spider-Man', etc. */
+        results.length === 0 &&
+        (searchText.includes(state.movieSearch.searchText) || state.movieSearch.searchText.includes(searchText))
+      ) {
+        state.movieSearch = {
+          searchResults: [...state.movieSearch.searchResults],
+          searchText,
+        };
+      } else {
+        state.movieSearch = {
+          searchText,
+          searchResults: results,
+        };
+      }
+    },
   },
 });
 
@@ -62,6 +111,7 @@ export const TOP_RATED_TV_SHOWS = "Top Rated TV Shows";
 export const MOVIES = "Movies";
 export const MY_LIST = "My List";
 export const TOP_RATED_MOVIES = "Top Rated Movies";
+export const SEARCH_MATCHES = "Search matches: ";
 
 export const movieActions = moviesSlice.actions;
 export default moviesSlice.reducer;

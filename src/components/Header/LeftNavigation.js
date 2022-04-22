@@ -1,9 +1,7 @@
-import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
-import classes from "./Categories.module.css";
+import classes from "./LeftNavigation.module.css";
 
-const Categories = () => {
-  const movieList = useSelector((state) => state.movies.myMovieList);
+const LeftNavigation = () => {
   const location = useLocation();
 
   const homeClasses = `${classes.home} ${
@@ -20,8 +18,6 @@ const Categories = () => {
   const myListClass = location.pathname.includes("list")
     ? `${classes.active}`
     : "";
-
-  const showListHandler = () => {};
 
   return (
     <nav>
@@ -51,4 +47,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default LeftNavigation;
