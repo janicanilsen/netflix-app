@@ -111,7 +111,7 @@ export const TOP_RATED_TV_SHOWS = "Top Rated TV Shows";
 export const MOVIES = "Movies";
 export const MY_LIST = "My List";
 export const TOP_RATED_MOVIES = "Top Rated Movies";
-export const SEARCH_MATCHES = "Search matches: ";
+export const SEARCH_MATCHES = "Search matches for ";
 
 export const movieActions = moviesSlice.actions;
 export default moviesSlice.reducer;

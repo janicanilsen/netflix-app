@@ -1,6 +1,6 @@
 import Container from "../UI/Container";
 import classes from "./MovieList.module.css";
-import MoviePoster from "./MoviePoster";
+import Movie from "./Movie";
 import { useSelector } from "react-redux";
 import {
   MY_LIST,
@@ -41,7 +41,7 @@ const MovieList = (props) => {
     displayMovies = movieList.map(
       (movie) =>
         movie.backdrop_path && (
-          <MoviePoster
+          <Movie
             key={movie.id}
             movieData={{ ...movie, category: props.category }}
           />
@@ -53,14 +53,15 @@ const MovieList = (props) => {
     displayMovies = <p>There was an error fetching data.</p>;
   }
 
-  if(props.category === SEARCH_MATCHES && movieList.length === 0) {
+  if (props.category === SEARCH_MATCHES && movieList.length === 0) {
     displayMovies = <p>No movie matching your search.</p>;
   }
 
   return (
-    <section>
-      <h4>{props.category}</h4>
-      <h5>{props.searchText ? props.searchText : ''}</h5>
+    <section className={classes["movie-list"]}>
+      <h4 className={classes['movie-category']}>
+        {props.category} {props.searchText ? "'" + props.searchText + "'" : ""}
+      </h4>
       <Container>{displayMovies}</Container>
     </section>
   );

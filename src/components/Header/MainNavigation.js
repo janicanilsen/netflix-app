@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import classes from "./LeftNavigation.module.css";
+import classes from "./MainNavigation.module.css";
 
-const LeftNavigation = () => {
+const MainNavigation = () => {
   const location = useLocation();
 
   const homeClasses = `${classes.home} ${
@@ -47,4 +47,4 @@ const LeftNavigation = () => {
   );
 };
 
-export default LeftNavigation;
+export default MainNavigation;

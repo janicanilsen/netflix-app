@@ -1,0 +1,16 @@
+.movie-poster:hover {
+    position: relative;
+    top: -0.5rem;
+    padding-top: 0;
+    width: 350px;
+    height: 175px;
+}
+
+.movie-poster {
+    height: 150px;
+    width: 280px;
+    margin-right: 0.5rem;
+    padding-top: 1rem;
+    cursor: pointer;
+    display: inline-block;
+}
