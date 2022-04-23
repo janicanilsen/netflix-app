@@ -27,7 +27,7 @@ const MovieDetails = () => {
 
   return (
     <section className={classes["detail-box"]}>
-      <label>{movie && (movie.title || movie.name)}</label>
+      <label>{movie && movie.title}</label>
       <div className={classes.buttons}>
         <button type="button" className="btn btn-secondary">
           Play

@@ -43,7 +43,7 @@ export const fetchImageConfigData = () => {
       const response = await fetch(API_CONFIG_URL + API_KEY);
 
       if (!response.ok) {
-        console.log('Error fetching image config data.');
+        console.log("Error fetching image config data.");
       }
       data = await response.json();
     };
@@ -89,7 +89,15 @@ export const fetchMovies = (category) => {
       case TOP_RATED_TV_SHOWS:
         getRequest(GET_TOP_RATED_TV_SHOWS_URL)
           .then(() => {
-            dispatch(movieActions.setTopRatedTVShows(movieResults));
+            /* we need to set the title as below because this GET request
+              does not return a title property */
+            dispatch(
+              movieActions.setTopRatedTVShows(
+                movieResults.map((movie) => {
+                  return { ...movie, title: movie.name };
+                })
+              )
+            );
             dispatch(uiActions.setStatus(SUCCESS));
           })
           .catch(() => {

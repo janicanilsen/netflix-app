@@ -3,32 +3,48 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { movieActions } from "../store/movies";
+import { ALL_CATEGORIES, movieActions, MOVIES, MY_LIST, TOP_RATED_TV_SHOWS } from "../store/movies";
+import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const SearchForm = () => {
   const dispatch = useDispatch();
-  const searchText = useSelector(
-    (state) => state.movies.movieSearch.searchText
-  );
+  const searchText = useSelector((state) => state.movies.movieSearch.searchText);
+  const location = useLocation();
+
+  useEffect(() => {
+    /* clearing search when user navigates to a different page */
+    dispatch(movieActions.resetMovieSearch());
+  }, [dispatch, location]);
 
   const searchOnChangeHandler = (event) => {
-    if (event.target.value.trim() === "") {
+    const searchValue = event.target.value;
+    if (searchValue.trim() === "") {
       dispatch(movieActions.resetMovieSearch());
     } else {
-      dispatch(movieActions.setMovieSearch(event.target.value));
+      if(location.pathname.includes('home') || location.key === "default") {
+        dispatch(movieActions.setMovieSearch({ searchText: searchValue, searchCategory: ALL_CATEGORIES }));
+      } else if(location.pathname.includes('tv')) {
+        dispatch(movieActions.setMovieSearch({ searchText: searchValue, searchCategory: TOP_RATED_TV_SHOWS }));
+      } else if(location.pathname.includes('movies')) {
+        dispatch(movieActions.setMovieSearch({ searchText: searchValue, searchCategory: MOVIES }));
+      } else if(location.pathname.includes('list')) {
+        dispatch(movieActions.setMovieSearch({ searchText: searchValue, searchCategory: MY_LIST }));
+      }
     }
   };
 
   const clearSearchHandler = () => {
     dispatch(movieActions.resetMovieSearch());
   };
+
   return (
     <form>
       <div className={classes["search-group"]}>
         <FontAwesomeIcon icon={faSearch} className={classes["search-icon"]} />
         <input
           type="text"
-          placeholder="Search a movie"
+          placeholder="Search"
           className={`form-control ${classes["search-box"]}`}
           onChange={searchOnChangeHandler}
           value={searchText}

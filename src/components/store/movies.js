@@ -67,29 +67,41 @@ const moviesSlice = createSlice({
       };
     },
     setMovieSearch(state, action) {
-      const searchText = action.payload;
+      const searchText = action.payload.searchText;
       let results = [];
 
-      /* we need to search from all movie arrays:
-        popularMovies, topRatedMovies, topRatedTVShows */
-      results = state.popularMovies.filter((movie) =>
-        movie.title.toLowerCase().includes(searchText.toLowerCase())
-      );
-      results = results.concat(
-        state.topRatedMovies.filter((movie) =>
+      const searchMovies = (list) => {
+        return list.filter((movie) =>
           movie.title.toLowerCase().includes(searchText.toLowerCase())
-        )
-      );
-      results = results.concat(
-        state.topRatedTVShows.filter((movie) =>
-          movie.name.toLowerCase().includes(searchText.toLowerCase())
-        )
-      );
+        );
+      };
 
-      if ( /* here, we're keeping the old results if there's no matches to satisfy use cases like:
+      switch (action.payload.searchCategory) {
+        case ALL_CATEGORIES:
+          results = searchMovies(state.popularMovies);
+          results = results.concat(searchMovies(state.topRatedTVShows));
+          results = results.concat(searchMovies(state.topRatedMovies));
+          break;
+        case TOP_RATED_TV_SHOWS:
+          results = searchMovies(state.topRatedTVShows);
+          break;
+        case MOVIES:
+          results = searchMovies(state.popularMovies);
+          results = results.concat(searchMovies(state.topRatedMovies));
+          break;
+        case MY_LIST:
+          results = searchMovies(state.myMovieList);
+          break;
+        default:
+          console.log("Invalid category @ movie.js " + action.payload.searchCategory);
+      }
+
+      if (
+        /* here, we're keeping the old results if there's no matches to satisfy use cases like:
               searchText: 'mannnn' => should still display 'Batman', 'Spider-Man', etc. */
         results.length === 0 &&
-        (searchText.includes(state.movieSearch.searchText) || state.movieSearch.searchText.includes(searchText))
+        (searchText.includes(state.movieSearch.searchText) ||
+          state.movieSearch.searchText.includes(searchText))
       ) {
         state.movieSearch = {
           searchResults: [...state.movieSearch.searchResults],
@@ -112,6 +124,7 @@ export const MOVIES = "Movies";
 export const MY_LIST = "My List";
 export const TOP_RATED_MOVIES = "Top Rated Movies";
 export const SEARCH_MATCHES = "Search matches for ";
+export const ALL_CATEGORIES = "All Categories";
 
 export const movieActions = moviesSlice.actions;
 export default moviesSlice.reducer;

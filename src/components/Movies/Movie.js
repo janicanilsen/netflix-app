@@ -18,7 +18,6 @@ const Movie = (props) => {
 
   return (
     <Fragment>
-      {/* <div className={classes["movie-poster"]}> */}
         <img
           src={
             imageConfig.baseUrl +
@@ -29,7 +28,6 @@ const Movie = (props) => {
           className={classes["movie-poster"]}
           onClick={clickHandler}
         />
-      {/* </div> */}
     </Fragment>
   );
 };

@@ -12,8 +12,6 @@ const HomeBackgroundImage = (props) => {
       ")"
     : "";
 
-
-
   return (
     <section
       className={classes["main-box"]}

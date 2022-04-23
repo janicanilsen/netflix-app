@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import MovieDetails from "../components/Movies/MovieDetails";
 import MovieList from "../components/Movies/MovieList";
@@ -20,7 +20,7 @@ const Home = () => {
     return <p>There was an error.</p>;
   }
 
-  if (movieSearch.searchResults.length > 0) {
+  if (movieSearch.searchText.trim() !== '') {
     return <MovieList category={SEARCH_MATCHES} searchText={movieSearch.searchText} />;
   }
 
