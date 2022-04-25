@@ -9,6 +9,7 @@ import Layout from "./components/Layout/Layout";
 import { useDispatch } from "react-redux";
 import { fetchImageConfigData, fetchMovies } from "./components/store/request-actions";
 import { POPULAR_NOW, TOP_RATED_MOVIES, TOP_RATED_TV_SHOWS } from "./components/store/movies";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,11 +37,12 @@ function App() {
     <Fragment>
       <Layout>
         <Routes>
-          <Route path='/' element={<Home />} exact />
-          <Route path='/home' element={<Home />} />
-          <Route path='/tv-shows' element={<TVShows />} />
-          <Route path='/movies' element={<Movies />} />
-          <Route path='/my-list' element={<MyList />} />
+          <Route index element={<Home />} exact />
+          <Route path='home' element={<Home />} />
+          <Route path='tv-shows' element={<TVShows />} />
+          <Route path='movies' element={<Movies />} />
+          <Route path='my-list' element={<MyList />} />
+          <Route path='*' element={<PageNotFound />}/>
         </Routes>
       </Layout>
     </Fragment>

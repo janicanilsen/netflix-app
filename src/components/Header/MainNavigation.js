@@ -5,7 +5,8 @@ const MainNavigation = () => {
   const location = useLocation();
 
   const homeClasses = `${classes.home} ${
-    location.pathname.includes("home") || location.key === "default"
+    location.pathname.includes("home") ||
+    (location.pathname.length === 1 && location.key === "default")
       ? classes.active
       : ""
   }`;

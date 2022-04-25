@@ -38,8 +38,12 @@ const SearchForm = () => {
     dispatch(movieActions.resetMovieSearch());
   };
 
+  const submitHandler = (event) => {
+    event.preventDefault();
+  }
+
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <div className={classes["search-group"]}>
         <FontAwesomeIcon icon={faSearch} className={classes["search-icon"]} />
         <input
