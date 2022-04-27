@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import classes from "./HomeBackgroundImage.module.css";
 
-const HomeBackgroundImage = (props) => {
+const HomeBackgroundImage = () => {
   const movie = useSelector((state) => state.movies.displayMovieDetail);
   const imageConfig = useSelector((state) => state.imageConfig);
   let imagePath = movie

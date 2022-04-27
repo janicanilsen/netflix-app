@@ -8,6 +8,8 @@ const MyList = () => {
 
   if (ui.status === "PENDING") {
     return <p>Loading...</p>;
+  } else if (ui.status === "ERROR") {
+    return <p>There was an error fetching data.</p>;
   }
 
   if (movieSearch.searchText.trim() !== "") {

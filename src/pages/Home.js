@@ -9,6 +9,7 @@ import {
   TOP_RATED_MOVIES,
   TOP_RATED_TV_SHOWS,
 } from "../components/store/movies";
+import { SLIDER_VIEW } from "../components/store/ui";
 import HomeBackgroundImage from "../components/UI/HomeBackgroundImage";
 
 const Home = () => {
@@ -18,21 +19,26 @@ const Home = () => {
   if (ui.status === "PENDING") {
     return <p>Loading...</p>;
   } else if (ui.status === "ERROR") {
-    return <p>There was an error.</p>;
+    return <p>There was an error fetching data.</p>;
   }
 
-  if (movieSearch.searchText.trim() !== '') {
-    return <MovieList category={SEARCH_MATCHES} searchText={movieSearch.searchText} />;
+  if (movieSearch.searchText.trim() !== "") {
+    return (
+      <MovieList
+        category={SEARCH_MATCHES}
+        searchText={movieSearch.searchText}
+      />
+    );
   }
 
   return (
     <Fragment>
       <HomeBackgroundImage />
       <MovieDetails />
-      <MovieList category={POPULAR_MOVIES}/>
-      <MovieList category={TOP_RATED_MOVIES} />
-      <MovieList category={POPULAR_TV_SHOWS} />
-      <MovieList category={TOP_RATED_TV_SHOWS} />
+      <MovieList category={POPULAR_MOVIES} viewMode={SLIDER_VIEW} />
+      <MovieList category={TOP_RATED_MOVIES} viewMode={SLIDER_VIEW} />
+      <MovieList category={POPULAR_TV_SHOWS} viewMode={SLIDER_VIEW} />
+      <MovieList category={TOP_RATED_TV_SHOWS} viewMode={SLIDER_VIEW} />
     </Fragment>
   );
 };

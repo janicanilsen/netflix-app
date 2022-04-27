@@ -1,6 +1,7 @@
-import Container from "../UI/Container";
+import MovieListContainer from "../UI/MovieListContainer";
 import classes from "./MovieList.module.css";
-import Movie from "./Movie";
+import MovieBackdrop from "./MovieBackdrop";
+import MoviePoster from "./MoviePoster";
 import { useSelector } from "react-redux";
 import {
   MY_LIST,
@@ -10,13 +11,15 @@ import {
   TOP_RATED_MOVIES,
   TOP_RATED_TV_SHOWS,
 } from "../store/movies";
+import { SLIDER_VIEW } from "../store/ui";
+import ListTitle from "./ListTitle";
 
 const MovieList = (props) => {
   const movies = useSelector((state) => state.movies);
   const ui = useSelector((state) => state.ui);
 
   let movieList = [];
-  let displayMovies = <p>List is empty.</p>;
+  let movieImages = <p>List is empty.</p>;
 
   switch (props.category) {
     case POPULAR_MOVIES:
@@ -38,36 +41,46 @@ const MovieList = (props) => {
       movieList = [...movies.movieSearch.searchResults];
       break;
     default:
-      movieList = [];
+      console.log('Invalid category @ MovieList.js ' + props.category);
   }
 
   if (ui.status === "SUCCESS" && movieList.length > 0) {
-    displayMovies = movieList.map(
-      (movie) =>
-        movie.backdrop_path && (
-          <Movie
-            key={movie.id}
-            movieData={{ ...movie, category: props.category }}
-          />
-        )
-    );
-  }
-
-  if (ui.status === "ERROR") {
-    displayMovies = <p>There was an error fetching data.</p>;
+    if (props.viewMode === SLIDER_VIEW) {
+      movieImages = movieList.map(
+        (movie) =>
+          movie.backdrop_path && (
+            <MovieBackdrop
+              key={movie.id}
+              movieData={{ ...movie, category: props.category }}
+            />
+          )
+      );
+    } else { //grid view
+      movieImages = movieList.map(
+        (movie) =>
+          movie.poster_path && (
+            <MoviePoster
+              key={movie.id}
+              movieData={{ ...movie, category: props.category }}
+            />
+          )
+      );
+    }
   }
 
   if (props.category === SEARCH_MATCHES && movieList.length === 0) {
-    displayMovies = <p>No movie matching your search.</p>;
+    movieImages = <p>No movie matching your search.</p>;
   }
 
   return (
     <section className={classes["movie-list"]}>
-      <h4 className={classes["movie-category"]}>
-        {props.label ? props.label : props.category }
-        {props.searchText ? "'" + props.searchText + "'" : ""}
-      </h4>
-      <Container>{displayMovies}</Container>
+      <ListTitle
+        title={props.title ? props.title : props.category}
+        searchText={props.searchText ? "'" + props.searchText + "'" : ""}
+      />
+      <MovieListContainer viewMode={props.viewMode}>
+        {movieImages}
+      </MovieListContainer>
     </section>
   );
 };

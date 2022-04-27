@@ -1,4 +1,4 @@
-.movie-poster:hover {
+.movie-image:hover {
     position: relative;
     top: 0rem;
     padding-top: 0rem;
@@ -6,7 +6,7 @@
     height: 18rem;
 }
 
-.movie-poster {
+.movie-image {
     height: 16rem;
     width: 30rem;
     margin-right: 0.5rem;

@@ -1,7 +1,13 @@
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import MovieList from "../components/Movies/MovieList";
-import { POPULAR_NOW, TOP_RATED_MOVIES, SEARCH_MATCHES, POPULAR_MOVIES, TOP_RATED } from "../components/store/movies";
+import {
+  POPULAR_NOW,
+  TOP_RATED_MOVIES,
+  SEARCH_MATCHES,
+  POPULAR_MOVIES,
+  TOP_RATED,
+} from "../components/store/movies";
 
 const Movies = () => {
   const ui = useSelector((state) => state.ui);
@@ -9,9 +15,11 @@ const Movies = () => {
 
   if (ui.status === "PENDING") {
     return <p>Loading...</p>;
+  } else if (ui.status === "ERROR") {
+    return <p>There was an error fetching data.</p>;
   }
 
-  if (movieSearch.searchText.trim() !== '') {
+  if (movieSearch.searchText.trim() !== "") {
     return (
       <MovieList
         category={SEARCH_MATCHES}
@@ -22,8 +30,8 @@ const Movies = () => {
 
   return (
     <Fragment>
-      <MovieList category={POPULAR_MOVIES} label={POPULAR_NOW} />
-      <MovieList category={TOP_RATED_MOVIES} label={TOP_RATED} />
+      <MovieList category={POPULAR_MOVIES} title={POPULAR_NOW} />
+      <MovieList category={TOP_RATED_MOVIES} title={TOP_RATED} />
     </Fragment>
   );
 };

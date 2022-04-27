@@ -1,8 +1,16 @@
-.container {
+.slider-container {
     margin-left: 5rem;
     margin-right: 5rem;
     display: flex;
-    overflow-x: scroll; /* enables horizontal scrolling */
+    overflow-x: scroll;
+}
+
+.grid-container {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    display: flex;
+    flex-basis: 0;
+    flex-wrap: wrap;    
 }
 
 .container::-webkit-scrollbar {

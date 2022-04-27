@@ -29,7 +29,10 @@ const MovieDetails = () => {
     <section className={classes["detail-box"]}>
       <label>{movie && movie.title}</label>
       <div className={classes.buttons}>
-        <button type="button" className="btn btn-secondary">
+        <button
+          type="button"
+          className="btn btn-secondary"
+        >
           Play
         </button>
         <button
@@ -41,7 +44,7 @@ const MovieDetails = () => {
           {movieIsOnList ? "Remove from my list" : "Add to list"}
         </button>
       </div>
-      <p className={classes['movie-description']}>{movieTrimmedDescription}</p>
+      <p className={classes["movie-description"]}>{movieTrimmedDescription}</p>
     </section>
   );
 };

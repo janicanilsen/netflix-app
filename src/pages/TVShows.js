@@ -1,6 +1,13 @@
 import { useSelector } from "react-redux";
 import MovieList from "../components/Movies/MovieList";
-import { TOP_RATED_TV_SHOWS, SEARCH_MATCHES, POPULAR_TV_SHOWS, POPULAR_NOW, TOP_RATED } from "../components/store/movies";
+import {
+  TOP_RATED_TV_SHOWS,
+  SEARCH_MATCHES,
+  POPULAR_TV_SHOWS,
+  POPULAR_NOW,
+  TOP_RATED,
+} from "../components/store/movies";
+import { Fragment } from "react";
 
 const TVShows = () => {
   const ui = useSelector((state) => state.ui);
@@ -8,6 +15,8 @@ const TVShows = () => {
 
   if (ui.status === "PENDING") {
     return <p>Loading...</p>;
+  } else if (ui.status === "ERROR") {
+    return <p>There was an error fetching data.</p>;
   }
 
   if (movieSearch.searchText.trim() !== "") {
@@ -20,10 +29,10 @@ const TVShows = () => {
   }
 
   return (
-    <>
-      <MovieList category={POPULAR_TV_SHOWS} label={POPULAR_NOW} />
-      <MovieList category={TOP_RATED_TV_SHOWS} label={TOP_RATED} />
-    </>
+    <Fragment>
+      <MovieList category={POPULAR_TV_SHOWS} title={POPULAR_NOW} />
+      <MovieList category={TOP_RATED_TV_SHOWS} title={TOP_RATED} />
+    </Fragment>
   );
 };
 

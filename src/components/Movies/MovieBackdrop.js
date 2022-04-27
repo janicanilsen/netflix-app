@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { movieActions } from "../store/movies";
-import classes from "./Movie.module.css";
+import classes from "./MovieBackdrop.module.css";
 
-const Movie = (props) => {
+const MovieBackdrop = (props) => {
   const imageConfig = useSelector((state) => state.imageConfig);
   const dispatch = useDispatch();
 
@@ -18,18 +18,16 @@ const Movie = (props) => {
 
   return (
     <Fragment>
-        <img
-          src={
-            imageConfig.baseUrl +
-            imageConfig.size +
-            props.movieData.backdrop_path
-          }
-          alt={props.movieData.original_title}
-          className={classes["movie-poster"]}
-          onClick={clickHandler}
-        />
+      <img
+        src={
+          imageConfig.baseUrl + imageConfig.size + props.movieData.backdrop_path
+        }
+        alt={props.movieData.original_title}
+        className={classes["movie-image"]}
+        onClick={clickHandler}
+      />
     </Fragment>
   );
 };
 
-export default Movie;
+export default MovieBackdrop;
