@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { ALL_CATEGORIES, movieActions, MOVIES, MY_LIST, TOP_RATED_TV_SHOWS } from "../store/movies";
+import { ALL_CATEGORIES, movieActions, MOVIES, MY_LIST, TV_SHOWS } from "../store/movies";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
@@ -25,7 +25,7 @@ const SearchForm = () => {
       if(location.pathname.includes('home') || location.key === "default") {
         dispatch(movieActions.setMovieSearch({ searchText: searchValue, searchCategory: ALL_CATEGORIES }));
       } else if(location.pathname.includes('tv')) {
-        dispatch(movieActions.setMovieSearch({ searchText: searchValue, searchCategory: TOP_RATED_TV_SHOWS }));
+        dispatch(movieActions.setMovieSearch({ searchText: searchValue, searchCategory: TV_SHOWS }));
       } else if(location.pathname.includes('movies')) {
         dispatch(movieActions.setMovieSearch({ searchText: searchValue, searchCategory: MOVIES }));
       } else if(location.pathname.includes('list')) {

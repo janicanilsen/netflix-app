@@ -10,7 +10,6 @@
 }
 
 .container p {
-    color: var(--gray);
     font-size: 1.6rem;
     padding: 2em;
 }

@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import MovieDetails from "../components/Movies/MovieDetails";
 import MovieList from "../components/Movies/MovieList";
 import {
-  POPULAR_NOW,
+  POPULAR_MOVIES,
+  POPULAR_TV_SHOWS,
   SEARCH_MATCHES,
   TOP_RATED_MOVIES,
   TOP_RATED_TV_SHOWS,
@@ -28,8 +29,9 @@ const Home = () => {
     <Fragment>
       <HomeBackgroundImage />
       <MovieDetails />
-      <MovieList category={POPULAR_NOW} />
+      <MovieList category={POPULAR_MOVIES}/>
       <MovieList category={TOP_RATED_MOVIES} />
+      <MovieList category={POPULAR_TV_SHOWS} />
       <MovieList category={TOP_RATED_TV_SHOWS} />
     </Fragment>
   );

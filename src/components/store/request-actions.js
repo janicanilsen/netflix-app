@@ -1,7 +1,8 @@
 import { imageConfigActions } from "./image-config";
 import {
   movieActions,
-  POPULAR_NOW,
+  POPULAR_MOVIES,
+  POPULAR_TV_SHOWS,
   TOP_RATED_MOVIES,
   TOP_RATED_TV_SHOWS,
 } from "./movies";
@@ -11,7 +12,6 @@ import { uiActions } from "./ui";
 
 const API_KEY = "498b63b9d2300c67ac8949ed13dcbcfe";
 const API_CONFIG_URL = "https://api.themoviedb.org/3/configuration?api_key=";
-
 const PAGE_ONE_REQUEST = "&language=en-US&page=1";
 
 const GET_POPULAR_MOVIES_URL =
@@ -24,6 +24,10 @@ const GET_TOP_RATED_TV_SHOWS_URL =
   PAGE_ONE_REQUEST;
 const GET_TOP_RATED_MOVIES_URL =
   "https://api.themoviedb.org/3/movie/top_rated?api_key=" +
+  API_KEY +
+  PAGE_ONE_REQUEST;
+const GET_POPULAR_TV_SHOWS_URL =
+  "https://api.themoviedb.org/3/tv/popular?api_key=" +
   API_KEY +
   PAGE_ONE_REQUEST;
 
@@ -76,7 +80,7 @@ export const fetchMovies = (category) => {
     };
 
     switch (category) {
-      case POPULAR_NOW:
+      case POPULAR_MOVIES:
         getRequest(GET_POPULAR_MOVIES_URL)
           .then(() => {
             dispatch(movieActions.setPopularMovies(movieResults));
@@ -108,6 +112,22 @@ export const fetchMovies = (category) => {
         getRequest(GET_TOP_RATED_MOVIES_URL)
           .then(() => {
             dispatch(movieActions.setTopRatedMovies(movieResults));
+            dispatch(uiActions.setStatus(SUCCESS));
+          })
+          .catch(() => {
+            dispatch(uiActions.setStatus(ERROR));
+          });
+        break;
+      case POPULAR_TV_SHOWS:
+        getRequest(GET_POPULAR_TV_SHOWS_URL)
+          .then(() => {
+            dispatch(
+              movieActions.setPopularTVShows(
+                movieResults.map((movie) => {
+                  return { ...movie, title: movie.name };
+                })
+              )
+            );
             dispatch(uiActions.setStatus(SUCCESS));
           })
           .catch(() => {

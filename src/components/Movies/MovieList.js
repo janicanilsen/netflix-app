@@ -4,7 +4,8 @@ import Movie from "./Movie";
 import { useSelector } from "react-redux";
 import {
   MY_LIST,
-  POPULAR_NOW,
+  POPULAR_MOVIES,
+  POPULAR_TV_SHOWS,
   SEARCH_MATCHES,
   TOP_RATED_MOVIES,
   TOP_RATED_TV_SHOWS,
@@ -18,7 +19,7 @@ const MovieList = (props) => {
   let displayMovies = <p>List is empty.</p>;
 
   switch (props.category) {
-    case POPULAR_NOW:
+    case POPULAR_MOVIES:
       movieList = [...movies.popularMovies];
       break;
     case MY_LIST:
@@ -29,6 +30,9 @@ const MovieList = (props) => {
       break;
     case TOP_RATED_MOVIES:
       movieList = [...movies.topRatedMovies];
+      break;
+    case POPULAR_TV_SHOWS:
+      movieList = [...movies.popularTVShows];
       break;
     case SEARCH_MATCHES:
       movieList = [...movies.movieSearch.searchResults];
@@ -59,8 +63,9 @@ const MovieList = (props) => {
 
   return (
     <section className={classes["movie-list"]}>
-      <h4 className={classes['movie-category']}>
-        {props.category} {props.searchText ? "'" + props.searchText + "'" : ""}
+      <h4 className={classes["movie-category"]}>
+        {props.label ? props.label : props.category }
+        {props.searchText ? "'" + props.searchText + "'" : ""}
       </h4>
       <Container>{displayMovies}</Container>
     </section>

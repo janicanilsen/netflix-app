@@ -16,6 +16,12 @@ body {
   font-size: 2rem;
 }
 
+p {
+  color: var(--gray);
+  font-size: 2rem;
+  padding: 4em;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

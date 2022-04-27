@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { useSelector } from "react-redux";
 import MovieList from "../components/Movies/MovieList";
-import { POPULAR_NOW, TOP_RATED_MOVIES, SEARCH_MATCHES } from "../components/store/movies";
+import { POPULAR_NOW, TOP_RATED_MOVIES, SEARCH_MATCHES, POPULAR_MOVIES, TOP_RATED } from "../components/store/movies";
 
 const Movies = () => {
   const ui = useSelector((state) => state.ui);
@@ -22,8 +22,8 @@ const Movies = () => {
 
   return (
     <Fragment>
-      <MovieList category={POPULAR_NOW} />
-      <MovieList category={TOP_RATED_MOVIES} />
+      <MovieList category={POPULAR_MOVIES} label={POPULAR_NOW} />
+      <MovieList category={TOP_RATED_MOVIES} label={TOP_RATED} />
     </Fragment>
   );
 };

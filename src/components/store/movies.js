@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { current } from "@reduxjs/toolkit";
 
 const initialMoviesState = {
   popularMovies: [],
@@ -11,6 +10,7 @@ const initialMoviesState = {
     searchResults: [],
     searchText: "",
   },
+  popularTVShows: [],
 };
 
 const moviesSlice = createSlice({
@@ -25,7 +25,7 @@ const moviesSlice = createSlice({
     },
     setDisplayMovieDetail(state, action) {
       switch (action.payload.category) {
-        case POPULAR_NOW:
+        case POPULAR_MOVIES:
           state.displayMovieDetail = state.popularMovies.find(
             (movie) => movie.id === action.payload.movieId
           );
@@ -37,6 +37,11 @@ const moviesSlice = createSlice({
           break;
         case TOP_RATED_MOVIES:
           state.displayMovieDetail = state.topRatedMovies.find(
+            (movie) => movie.id === action.payload.movieId
+          );
+          break;
+        case POPULAR_TV_SHOWS:
+          state.displayMovieDetail = state.popularTVShows.find(
             (movie) => movie.id === action.payload.movieId
           );
           break;
@@ -66,6 +71,9 @@ const moviesSlice = createSlice({
         searchResults: [],
       };
     },
+    setPopularTVShows(state, action) {
+      state.popularTVShows = action.payload;
+    },
     setMovieSearch(state, action) {
       const searchText = action.payload.searchText;
       let results = [];
@@ -81,9 +89,11 @@ const moviesSlice = createSlice({
           results = searchMovies(state.popularMovies);
           results = results.concat(searchMovies(state.topRatedTVShows));
           results = results.concat(searchMovies(state.topRatedMovies));
+          results = results.concat(searchMovies(state.popularTVShows));
           break;
-        case TOP_RATED_TV_SHOWS:
+        case TV_SHOWS:
           results = searchMovies(state.topRatedTVShows);
+          results = results.concat(searchMovies(state.popularTVShows));
           break;
         case MOVIES:
           results = searchMovies(state.popularMovies);
@@ -93,7 +103,9 @@ const moviesSlice = createSlice({
           results = searchMovies(state.myMovieList);
           break;
         default:
-          console.log("Invalid category @ movie.js " + action.payload.searchCategory);
+          console.log(
+            "Invalid category @ movie.js " + action.payload.searchCategory
+          );
       }
 
       if (
@@ -118,13 +130,17 @@ const moviesSlice = createSlice({
 });
 
 //movie categories constants
-export const POPULAR_NOW = "Popular Now";
+export const POPULAR_MOVIES = "Popular Movies";
 export const TOP_RATED_TV_SHOWS = "Top Rated TV Shows";
 export const MOVIES = "Movies";
 export const MY_LIST = "My List";
 export const TOP_RATED_MOVIES = "Top Rated Movies";
 export const SEARCH_MATCHES = "Search matches for ";
 export const ALL_CATEGORIES = "All Categories";
+export const POPULAR_TV_SHOWS = "Popular TV Shows";
+export const TV_SHOWS = 'TV Shows';
+export const POPULAR_NOW = 'Popular Now';
+export const TOP_RATED = 'Top Rated';
 
 export const movieActions = moviesSlice.actions;
 export default moviesSlice.reducer;

@@ -6,8 +6,16 @@ import TVShows from "./pages/TVShows";
 import Movies from "./pages/Movies";
 import Layout from "./components/Layout/Layout";
 import { useDispatch } from "react-redux";
-import { fetchImageConfigData, fetchMovies } from "./components/store/request-actions";
-import { POPULAR_NOW, TOP_RATED_MOVIES, TOP_RATED_TV_SHOWS } from "./components/store/movies";
+import {
+  fetchImageConfigData,
+  fetchMovies,
+} from "./components/store/request-actions";
+import {
+  POPULAR_MOVIES,
+  POPULAR_TV_SHOWS,
+  TOP_RATED_MOVIES,
+  TOP_RATED_TV_SHOWS,
+} from "./components/store/movies";
 import PageNotFound from "./pages/PageNotFound";
 
 function App() {
@@ -20,7 +28,7 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      dispatch(fetchMovies(POPULAR_NOW));
+      dispatch(fetchMovies(POPULAR_MOVIES));
     }, 500);
   }, [dispatch]);
 
@@ -32,16 +40,20 @@ function App() {
     dispatch(fetchMovies(TOP_RATED_TV_SHOWS));
   }, [dispatch]);
 
+  useEffect(() => {
+    dispatch(fetchMovies(POPULAR_TV_SHOWS));
+  }, [dispatch]);
+
   return (
     <Fragment>
       <Layout>
         <Routes>
           <Route index element={<Home />} exact />
-          <Route path='home' element={<Home />} />
-          <Route path='tv-shows' element={<TVShows />} />
-          <Route path='movies' element={<Movies />} />
-          <Route path='my-list' element={<MyList />} />
-          <Route path='*' element={<PageNotFound />}/>
+          <Route path="home" element={<Home />} />
+          <Route path="tv-shows" element={<TVShows />} />
+          <Route path="movies" element={<Movies />} />
+          <Route path="my-list" element={<MyList />} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Layout>
     </Fragment>
