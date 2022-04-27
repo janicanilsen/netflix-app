@@ -19,7 +19,7 @@ body {
 p {
   color: var(--gray);
   font-size: 1.8rem;
-  padding: 2em;
+  padding: 5em;
 }
 
 code {
