@@ -27,21 +27,14 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       dispatch(fetchMovies(POPULAR_MOVIES));
-    }, 500);
-  }, [dispatch]);
+      dispatch(fetchMovies(TOP_RATED_MOVIES));
+      dispatch(fetchMovies(TOP_RATED_TV_SHOWS));
+      dispatch(fetchMovies(POPULAR_TV_SHOWS));
+    }, 1000);
 
-  useEffect(() => {
-    dispatch(fetchMovies(TOP_RATED_MOVIES));
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchMovies(TOP_RATED_TV_SHOWS));
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchMovies(POPULAR_TV_SHOWS));
+    return () => clearTimeout(timer);
   }, [dispatch]);
 
   return (
