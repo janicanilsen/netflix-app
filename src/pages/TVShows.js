@@ -13,9 +13,11 @@ const TVShows = () => {
   const ui = useSelector((state) => state.ui);
   const movieSearch = useSelector((state) => state.movies.movieSearch);
 
-  if (ui.status === "PENDING") {
+  if (ui.fetchingPopularTVShows || ui.fetchingTopRatedTVShows) {
     return <p>Loading...</p>;
-  } else if (ui.status === "ERROR") {
+  }
+  
+  if (ui.status === "ERROR") {
     return <p>There was an error fetching data.</p>;
   }
 

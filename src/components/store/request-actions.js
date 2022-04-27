@@ -85,9 +85,11 @@ export const fetchMovies = (category) => {
           .then(() => {
             dispatch(movieActions.setPopularMovies(movieResults));
             dispatch(uiActions.setStatus(SUCCESS));
+            dispatch(uiActions.setFetchingPopularMovies(false));
           })
           .catch(() => {
             dispatch(uiActions.setStatus(ERROR));
+            dispatch(uiActions.setFetchingPopularMovies(false));
           });
         break;
       case TOP_RATED_TV_SHOWS:
@@ -103,9 +105,11 @@ export const fetchMovies = (category) => {
               )
             );
             dispatch(uiActions.setStatus(SUCCESS));
+            dispatch(uiActions.setFetchingTopRatedTVShows(false));
           })
           .catch(() => {
             dispatch(uiActions.setStatus(ERROR));
+            dispatch(uiActions.setFetchingTopRatedTVShows(false));
           });
         break;
       case TOP_RATED_MOVIES:
@@ -113,9 +117,11 @@ export const fetchMovies = (category) => {
           .then(() => {
             dispatch(movieActions.setTopRatedMovies(movieResults));
             dispatch(uiActions.setStatus(SUCCESS));
+            dispatch(uiActions.setFetchingTopRatedMovies(false));
           })
           .catch(() => {
             dispatch(uiActions.setStatus(ERROR));
+            dispatch(uiActions.setFetchingTopRatedMovies(false));
           });
         break;
       case POPULAR_TV_SHOWS:
@@ -129,9 +135,11 @@ export const fetchMovies = (category) => {
               )
             );
             dispatch(uiActions.setStatus(SUCCESS));
+            dispatch(uiActions.setFetchingPopularTVShows(false));
           })
           .catch(() => {
             dispatch(uiActions.setStatus(ERROR));
+            dispatch(uiActions.setFetchingPopularTVShows(false));
           });
         break;
       default:
