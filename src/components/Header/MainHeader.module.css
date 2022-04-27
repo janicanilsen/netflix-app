@@ -1,3 +1,9 @@
-header {
+.flex-container {
     display: flex;
+}
+
+@media (max-width: 850px) {
+    .flex-container {
+        justify-content: center;
+    }
 }

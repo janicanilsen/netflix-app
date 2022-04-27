@@ -46,7 +46,9 @@ const SearchForm = () => {
     <form onSubmit={submitHandler}>
       <div className={classes["search-group"]}>
         <FontAwesomeIcon icon={faSearch} className={classes["search-icon"]} />
+        <label className='visually-hidden' htmlFor='inputSearch'>Search</label>
         <input
+          id='inputSearch'
           type="text"
           placeholder="Search"
           className={`form-control ${classes["search-box"]}`}

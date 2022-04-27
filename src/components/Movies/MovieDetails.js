@@ -41,7 +41,7 @@ const MovieDetails = () => {
           {movieIsOnList ? "Remove from my list" : "Add to list"}
         </button>
       </div>
-      <p className={classes.text}>{movieTrimmedDescription}</p>
+      <p className={classes['movie-description']}>{movieTrimmedDescription}</p>
     </section>
   );
 };

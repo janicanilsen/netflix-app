@@ -1,25 +1,56 @@
 .icon {
-    width: 30px;
-    height: 25px;
-    margin: 0.5rem 1rem 0.5rem 1rem;
+    width: 3rem;
+    height: 3rem;
+    padding-right: 3.5rem;
+    padding-top: 0.7rem;
 }
 
 .avatar {
-    width: 40px;
-    height: 35px;
-    margin-left: 1rem;
-    margin-top: 0.2rem;
+    width: 5.5rem;
+    height: 4rem;
+}
+
+.container img {
+    padding-right: 1.5rem;
+    padding-top: 0.3rem;
 }
 
 .container {
-    position: relative;
-    right: -21rem;
-    top: 1.5rem;
-    display: flex;
+    display: inline-flex;
+    margin-top: 4.5rem;
+    margin-left: auto;
+    margin-right: 5rem;
 }
 
-input[type=text], input[type=text]:focus {
-    background-color: transparent;
-    border: 1px white solid;
-    color: white
+@media (max-width: 1400px) {
+    .icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        padding-right: 3rem;
+    }
+    .avatar {
+        width: 5rem;
+        height: 3.5rem;
+    }
+}
+
+@media (max-width: 1100px) {
+    .icon {
+        width: 2.2rem;
+        height: 2.2rem;
+        padding-right: 2.1rem;
+    }
+    .avatar {
+        width: 4.5rem;
+        height: 3rem;
+    }
+    .container {
+        margin-right: 2rem;
+    }
+}
+
+@media (max-width: 850px) {
+    .container {
+        display: none;
+    }
 }

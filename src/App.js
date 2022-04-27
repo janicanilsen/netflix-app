@@ -1,6 +1,5 @@
 import { Fragment, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-import "./App.css";
 import Home from "./pages/Home";
 import MyList from "./pages/MyList";
 import TVShows from "./pages/TVShows";

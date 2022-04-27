@@ -1,10 +1,10 @@
 import MainNavigation from "./MainNavigation";
 import Logo from "./Logo";
-import './MainHeader.module.css';
+import classes from './MainHeader.module.css';
 import RightNavigation from "./RightNavigation";
 
 const MainHeader = (props) => {
-    return <header>
+    return <header className={classes['flex-container']}>
         <Logo />
         <MainNavigation />
         <RightNavigation />

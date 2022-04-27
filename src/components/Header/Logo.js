@@ -1,7 +1,12 @@
 import classes from './Logo.module.css';
+import logo from '../../images/netflix-logo.svg';
+import icon from '../../images/netflix-icon.svg';
 
 const Logo = () => {
-    return <img className={classes.logo} alt='Netflix logo' src='https://image.tmdb.org/t/p/original/wwemzKWzjKYJFfCeiB57q3r4Bcm.svg' />
+    return <picture>
+        <source srcSet={logo} media='(min-width: 1100px)' />
+        <img className={classes.logo} alt='Netflix logo' src={icon} />
+    </picture>
 }
 
 export default Logo;

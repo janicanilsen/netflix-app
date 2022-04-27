@@ -7,4 +7,9 @@
 
 .container::-webkit-scrollbar {
     display: none; /* to hide scrollbar but keep functionality */
-  }
+}
+
+.container p {
+    color: var(--gray);
+    font-size: 1.6rem;
+}

@@ -4,12 +4,11 @@ import classes from "./MainNavigation.module.css";
 const MainNavigation = () => {
   const location = useLocation();
 
-  const homeClasses = `${classes.home} ${
+  const homeClass =
     location.pathname.includes("home") ||
     (location.pathname.length === 1 && location.key === "default")
-      ? classes.active
-      : ""
-  }`;
+      ? `${classes.active}`
+      : "";
   const tvShowClass = location.pathname.includes("tv")
     ? `${classes.active}`
     : "";
@@ -21,10 +20,10 @@ const MainNavigation = () => {
     : "";
 
   return (
-    <nav>
+    <nav className={classes["nav-container"]}>
       <ul>
         <li>
-          <Link to="home" className={homeClasses}>
+          <Link to="home" className={homeClass}>
             Home
           </Link>
         </li>

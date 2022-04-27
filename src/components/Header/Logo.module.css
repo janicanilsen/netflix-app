@@ -1,6 +1,15 @@
 .logo {
-    margin-left: 5rem;
-    width: 100px;
-    height: 80px;
-    margin-top: 0.3rem;
+    width: 15rem;
+    height: 6rem;
+    margin-top: 4rem;
+    margin-left: 7rem;
+}
+
+@media (max-width: 1100px) { /* for the N logo */
+    .logo {
+        width: 10rem;
+        height: 5rem;
+        margin-top: 4rem;
+        margin-left: 0rem;
+    }
 }
