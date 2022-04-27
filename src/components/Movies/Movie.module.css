@@ -1,15 +1,15 @@
 .movie-poster:hover {
     position: relative;
-    top: -0.5rem;
-    padding-top: 0;
-    width: 350px;
-    height: 175px;
+    top: 0rem;
+    padding-top: 0rem;
+    width: 40rem;
+    height: 18rem;
 }
 
 .movie-poster {
-    height: 150px;
-    width: 280px;
+    height: 16rem;
+    width: 30rem;
     margin-right: 0.5rem;
-    padding-top: 1rem;
+    padding-top: 2rem;
     cursor: pointer;
 }
