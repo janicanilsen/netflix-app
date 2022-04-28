@@ -1,11 +1,6 @@
+import { ERROR, PENDING, POPULAR_MOVIES, POPULAR_TV_SHOWS, SUCCESS, TOP_RATED_MOVIES, TOP_RATED_TV_SHOWS } from "./constants";
 import { imageConfigActions } from "./image-config";
-import {
-  movieActions,
-  POPULAR_MOVIES,
-  POPULAR_TV_SHOWS,
-  TOP_RATED_MOVIES,
-  TOP_RATED_TV_SHOWS,
-} from "./movies";
+import { movieActions } from "./movies";
 import { uiActions } from "./ui";
 
 /***** START OF CONSTANTS *****/
@@ -30,11 +25,6 @@ const GET_POPULAR_TV_SHOWS_URL =
   "https://api.themoviedb.org/3/tv/popular?api_key=" +
   API_KEY +
   PAGE_ONE_REQUEST;
-
-//status
-const PENDING = "PENDING";
-const ERROR = "ERROR";
-const SUCCESS = "SUCCESS";
 
 /***** END OF CONSTANTS *****/
 

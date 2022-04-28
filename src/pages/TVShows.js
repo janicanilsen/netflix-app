@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
 import MovieList from "../components/Movies/MovieList";
-import {
-  TOP_RATED_TV_SHOWS,
-  SEARCH_MATCHES,
-  POPULAR_TV_SHOWS,
-  POPULAR_NOW,
-  TOP_RATED,
-} from "../components/store/movies";
 import { Fragment } from "react";
+import {
+  ERROR,
+  POPULAR_NOW,
+  POPULAR_TV_SHOWS,
+  SEARCH_MATCHES,
+  TOP_RATED,
+  TOP_RATED_TV_SHOWS,
+} from "../components/store/constants";
 
 const TVShows = () => {
   const ui = useSelector((state) => state.ui);
@@ -16,8 +17,8 @@ const TVShows = () => {
   if (ui.fetchingPopularTVShows || ui.fetchingTopRatedTVShows) {
     return <p>Loading...</p>;
   }
-  
-  if (ui.status === "ERROR") {
+
+  if (ui.status === ERROR) {
     return <p>There was an error fetching data.</p>;
   }
 

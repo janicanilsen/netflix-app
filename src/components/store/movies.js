@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { ALL_CATEGORIES, MOVIES, MY_LIST, POPULAR_MOVIES, POPULAR_TV_SHOWS, TOP_RATED_MOVIES, TOP_RATED_TV_SHOWS, TV_SHOWS } from "./constants";
 
 const initialMoviesState = {
   popularMovies: [],
@@ -128,19 +129,6 @@ const moviesSlice = createSlice({
     },
   },
 });
-
-//movie categories constants
-export const POPULAR_MOVIES = "Popular Movies";
-export const TOP_RATED_TV_SHOWS = "Top Rated TV Shows";
-export const MOVIES = "Movies";
-export const MY_LIST = "My List";
-export const TOP_RATED_MOVIES = "Top Rated Movies";
-export const SEARCH_MATCHES = "Search matches for ";
-export const ALL_CATEGORIES = "All Categories";
-export const POPULAR_TV_SHOWS = "Popular TV Shows";
-export const TV_SHOWS = 'TV Shows';
-export const POPULAR_NOW = 'Popular Now';
-export const TOP_RATED = 'Top Rated';
 
 export const movieActions = moviesSlice.actions;
 export default moviesSlice.reducer;

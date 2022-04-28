@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import MovieList from "../components/Movies/MovieList";
-import { MY_LIST, SEARCH_MATCHES } from "../components/store/movies";
+import { MY_LIST, SEARCH_MATCHES } from "../components/store/constants";
 
 const MyList = () => {
   const movieSearch = useSelector((state) => state.movies.movieSearch);

@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { ALL_CATEGORIES, movieActions, MOVIES, MY_LIST, TV_SHOWS } from "../store/movies";
+import { movieActions } from "../store/movies";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { ALL_CATEGORIES, MOVIES, MY_LIST, TV_SHOWS } from "../store/constants";
 
 const SearchForm = () => {
   const dispatch = useDispatch();

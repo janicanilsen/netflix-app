@@ -1,4 +1,4 @@
-import { SLIDER_VIEW } from "../store/ui";
+import { SLIDER_VIEW } from "../store/constants";
 import classes from "./MovieListContainer.module.css";
 
 const MovieListContainer = (props) => {

@@ -3,16 +3,8 @@ import classes from "./MovieList.module.css";
 import MovieBackdrop from "./MovieBackdrop";
 import MoviePoster from "./MoviePoster";
 import { useSelector } from "react-redux";
-import {
-  MY_LIST,
-  POPULAR_MOVIES,
-  POPULAR_TV_SHOWS,
-  SEARCH_MATCHES,
-  TOP_RATED_MOVIES,
-  TOP_RATED_TV_SHOWS,
-} from "../store/movies";
-import { SLIDER_VIEW } from "../store/ui";
 import ListTitle from "./ListTitle";
+import { MY_LIST, POPULAR_MOVIES, POPULAR_TV_SHOWS, SEARCH_MATCHES, SLIDER_VIEW, TOP_RATED_MOVIES, TOP_RATED_TV_SHOWS } from "../store/constants";
 
 const MovieList = (props) => {
   const movies = useSelector((state) => state.movies);

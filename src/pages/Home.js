@@ -3,13 +3,14 @@ import { useSelector } from "react-redux";
 import MovieDetails from "../components/Movies/MovieDetails";
 import MovieList from "../components/Movies/MovieList";
 import {
+  ERROR,
   POPULAR_MOVIES,
   POPULAR_TV_SHOWS,
   SEARCH_MATCHES,
+  SLIDER_VIEW,
   TOP_RATED_MOVIES,
   TOP_RATED_TV_SHOWS,
-} from "../components/store/movies";
-import { SLIDER_VIEW } from "../components/store/ui";
+} from "../components/store/constants";
 import HomeBackgroundImage from "../components/UI/HomeBackgroundImage";
 
 const Home = () => {
@@ -24,8 +25,8 @@ const Home = () => {
   ) {
     return <p>Loading...</p>;
   }
-  
-  if (ui.status === "ERROR") {
+
+  if (ui.status === ERROR) {
     return <p>There was an error fetching data.</p>;
   }
 

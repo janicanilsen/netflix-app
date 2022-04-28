@@ -10,13 +10,13 @@ import {
   fetchImageConfigData,
   fetchMovies,
 } from "./components/store/request-actions";
+import PageNotFound from "./pages/PageNotFound";
 import {
   POPULAR_MOVIES,
   POPULAR_TV_SHOWS,
   TOP_RATED_MOVIES,
   TOP_RATED_TV_SHOWS,
-} from "./components/store/movies";
-import PageNotFound from "./pages/PageNotFound";
+} from "./components/store/constants";
 
 function App() {
   const dispatch = useDispatch();
