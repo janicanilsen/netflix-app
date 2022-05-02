@@ -1,0 +1,18 @@
+/* The Close Button */
+.close {
+  color: var(--sugar-white);
+  font-size: 2em;
+  font-weight: bold;
+  position: absolute;
+  top: 0.5em;
+  right: 0.7em;
+}
+
+.close:hover,
+.close:focus {
+  cursor: pointer;
+}
+
+.modal-detail {
+    margin-bottom: 2rem;
+}

@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { movieActions } from "../store/movies";
 import classes from "./MovieDetails.module.css";
 
-const MovieDetails = () => {
+const MovieDetails = (props) => {
   const movie = useSelector((state) => state.movies.displayMovieDetail);
   const dispatch = useDispatch();
   const myList = useSelector((state) => state.movies.myMovieList);
@@ -26,7 +26,7 @@ const MovieDetails = () => {
   };
 
   return (
-    <section className={classes["detail-box"]}>
+    <section className={`${classes["detail-box"]} ${props.className}`}>
       <label>{movie && movie.title}</label>
       <div className={classes.buttons}>
         <button
