@@ -1,5 +1,5 @@
-import { Fragment } from "react";
-import { useSelector } from "react-redux";
+import { Fragment, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import MovieList from "../components/Movies/MovieList";
 import {
   ERROR,
@@ -9,10 +9,19 @@ import {
   TOP_RATED,
   TOP_RATED_MOVIES,
 } from "../components/store/constants";
+import { movieActions } from "../components/store/movies";
 
 const Movies = () => {
   const ui = useSelector((state) => state.ui);
   const movieSearch = useSelector((state) => state.movies.movieSearch);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      //this fires after component unmount so perfect to reset the movie detail display
+      dispatch(movieActions.resetMovieDetailDisplay());
+    };
+  }, [dispatch]);
 
   if (ui.fetchingPopularMovies || ui.fetchingTopRatedMovies) {
     return <p>Loading...</p>;

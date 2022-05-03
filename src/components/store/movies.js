@@ -1,5 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ALL_CATEGORIES, MOVIES, MY_LIST, POPULAR_MOVIES, POPULAR_TV_SHOWS, TOP_RATED_MOVIES, TOP_RATED_TV_SHOWS, TV_SHOWS } from "./constants";
+import {
+  ALL_CATEGORIES,
+  MOVIES,
+  MY_LIST,
+  POPULAR_MOVIES,
+  POPULAR_TV_SHOWS,
+  TOP_RATED_MOVIES,
+  TOP_RATED_TV_SHOWS,
+  TV_SHOWS,
+} from "./constants";
 
 const initialMoviesState = {
   popularMovies: [],
@@ -24,6 +33,9 @@ const moviesSlice = createSlice({
       //set initial value
       state.displayMovieDetail = action.payload[0];
     },
+    resetMovieDetailDisplay(state) {
+      state.displayMovieDetail = state.popularMovies[0];
+    },
     setDisplayMovieDetail(state, action) {
       switch (action.payload.category) {
         case POPULAR_MOVIES:
@@ -43,6 +55,11 @@ const moviesSlice = createSlice({
           break;
         case POPULAR_TV_SHOWS:
           state.displayMovieDetail = state.popularTVShows.find(
+            (movie) => movie.id === action.payload.movieId
+          );
+          break;
+        case MY_LIST:
+          state.displayMovieDetail = state.myMovieList.find(
             (movie) => movie.id === action.payload.movieId
           );
           break;
